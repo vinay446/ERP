@@ -36,7 +36,7 @@ public class HibernateConfiguration {
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(datasource());
-		sessionFactory.setPackagesToScan(new String[] { "com.glovision.model" });
+		sessionFactory.setPackagesToScan(new String[] { "com.glovision.erp.model" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
 	}
