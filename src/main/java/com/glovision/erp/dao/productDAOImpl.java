@@ -1,0 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.glovision.erp.dao;
+
+import com.glovision.erp.model.product;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+/**
+ *
+ * @author glodeveloper
+ */
+@Repository("productDAO")
+public class productDAOImpl implements productDAO {
+
+    @Autowired
+    private SessionFactory factory;
+
+    private Session getSession() {
+        return factory.getCurrentSession();
+    }
+
+    @Override
+    public product findByProductID(String productID) {
+        return (product) getSession().get(product.class, productID);
+    }
+
+    @Override
+    public void createProduct(product p) {
+        getSession().saveOrUpdate(p);
+    }
+
+    @Override
+    public void deleteProduct(String productID) {
+        getSession().delete(findByProductID(productID));
+    }
+
+    @Override
+    public List<product> listAllProducts() {
+        return (List<product>) getSession().createCriteria(product.class).list();
+    }
+
+}
