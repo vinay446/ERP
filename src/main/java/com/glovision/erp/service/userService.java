@@ -42,4 +42,9 @@ public interface userService {
      * @return list of all user obj
      */
     List<user> listAllUsers();
+    
+    
+    boolean findUser(String username,String password);
+    
+    
 }
