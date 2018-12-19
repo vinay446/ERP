@@ -50,7 +50,7 @@ public class inventory {
     @Column(name="inventory_UniqueKey")
     String inventory_UniqueKey;
     
-    @Column(name="inventory_Name")
+    @Column(name="inventory_Holder")
     String inventory_Holder;
 
     public int getInventory_Id() {
