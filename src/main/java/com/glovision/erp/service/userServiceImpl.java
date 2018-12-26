@@ -49,7 +49,6 @@ public class userServiceImpl implements userService {
     }
 
     //Check the user exists or not
-    
     @SuppressWarnings({"unchecked", "deprecation"})
     public boolean findUser(String uname, String upwd) {
         log.info("Checking the user in the database");
@@ -68,4 +67,10 @@ public class userServiceImpl implements userService {
         return isValidUser;
     }
 
+    @Override
+    public boolean isUseremailIDUnique(String emailID) {
+        // TODO Auto-generated method stub
+        user u = user.findByEmailID(emailID);
+        return u == null;
+    }
 }

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -41,5 +42,15 @@ public class CommonController {
     public String error500(ModelMap model) {        
         log.fatal("Un handled internal server error occured..");
         return "500";
+    }
+    
+    /**
+     * Registration Page redirection
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value="/register" , method= RequestMethod.GET)
+    public String registrationpage(ModelMap model){
+        return "Register";
     }
 }

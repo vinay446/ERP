@@ -20,7 +20,7 @@ import javax.persistence.Table;
 public class user implements Serializable {
 
     @Column(name = "user_Id")
-    String user_Id;
+    int user_Id;
 
     @Column(name = "user_Role")
     String user_Role;
@@ -44,11 +44,11 @@ public class user implements Serializable {
     @Column(name = "user_isActive")
     String user_isActive;
 
-    public String getUser_Id() {
+    public int getUser_Id() {
         return user_Id;
     }
 
-    public void setUser_Id(String user_Id) {
+    public void setUser_Id(int user_Id) {
         this.user_Id = user_Id;
     }
 

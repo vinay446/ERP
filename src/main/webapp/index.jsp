@@ -33,7 +33,7 @@
         <link href="<c:url value="/resources/css/page-center.css"/>" type="text/css" rel="stylesheet">
         <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
         <link href="<c:url value="/resources/css/perfect-scrollbar.css"/>" type="text/css" rel="stylesheet">
-      
+
 
         <script src="<c:url value="/resources/js/loginformvalidation.js"/>" type="text/javascript"></script>
 
@@ -92,7 +92,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s6 m6 l6">
-                            <p class="margin medium-small"><a href="user-register.html">Register Now!</a></p>
+                            <p class="margin medium-small"><a href="<c:url value="/register"/>">Register Now!</a></p>
                         </div>
                         <div class="input-field col s6 m6 l6">
                             <p class="margin right-align medium-small"><a href="user-forgot-password.html">Forgot password ?</a></p>

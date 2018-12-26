@@ -47,4 +47,11 @@ public interface userService {
     boolean findUser(String username,String password);
     
     
+    /**
+     * Finds emailID in database 
+     * @param emailID
+     * @return true if emailID does not exists in database 
+     */
+    public boolean isUseremailIDUnique(String emailID);
+        
 }
