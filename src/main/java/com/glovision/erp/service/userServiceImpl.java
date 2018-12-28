@@ -73,4 +73,9 @@ public class userServiceImpl implements userService {
         user u = user.findByEmailID(emailID);
         return u == null;
     }
+
+    @Override
+    public user getUserByID(int userID) {
+        return user.getUserByID(userID);
+    }
 }

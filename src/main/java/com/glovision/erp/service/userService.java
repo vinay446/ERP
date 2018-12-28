@@ -53,5 +53,6 @@ public interface userService {
      * @return true if emailID does not exists in database 
      */
     public boolean isUseremailIDUnique(String emailID);
-        
+             
+    public user getUserByID(int userID);
 }

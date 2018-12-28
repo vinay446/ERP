@@ -7,8 +7,10 @@ package com.glovision.erp.dao;
 
 import com.glovision.erp.model.user;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -44,6 +46,13 @@ public class userDAOImpl implements userDAO{
     @Override
     public List<user> listAllUsers() {
         return (List<user>) getSession().createCriteria(user.class).list();
+    }
+
+    @Override
+    public user getUserByID(int userID) {
+        Criteria cr = getSession().createCriteria(user.class);
+        cr.add(Restrictions.eq("user_Id", userID));
+        return (user) cr.uniqueResult();
     }
     
 }

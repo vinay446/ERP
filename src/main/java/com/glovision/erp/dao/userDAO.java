@@ -42,4 +42,11 @@ public interface userDAO {
      * @return list of all user obj
      */
     List<user> listAllUsers();
+    
+    /**
+     * Returns user obj from userID
+     * @param userID
+     * @return 
+     */
+    user getUserByID(int userID);
 }
