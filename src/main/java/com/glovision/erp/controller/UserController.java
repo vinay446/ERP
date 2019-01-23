@@ -15,9 +15,11 @@ import java.net.URLEncoder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -33,6 +35,11 @@ public class UserController {
     @Autowired
     userService service;
 
+    /***
+     * Adds User to database
+     * @param u
+     * @return 
+     */
     @RequestMapping(value = "/registerUser", method = RequestMethod.POST)
     public @ResponseBody
     message registerUser(@RequestBody user u) {
@@ -57,11 +64,12 @@ public class UserController {
             u.setUser_password(util.encryptString(u.getUser_password()));
             service.SaveUser(u);
             String verifycode = util.encryptString(u.getUser_Email().trim());
-            String link = "localhost:8084/erp/activateaccount?ID=" + u.getUser_Id() + "&code=" + URLEncoder.encode(verifycode);
+            String link = "192.168.0.127:8084/erp/activateaccount?ID=" + u.getUser_Id() + "&code=" + URLEncoder.encode(verifycode);
             SendMail se = new SendMail(u.getUser_Email(), "welocme@glovision.co", "WELCOME", u.getUser_Name(), link);
             se.start();
-            m.setMessage("User Registration success");
-            m.setStatus(true);
+            Thread.sleep(3000);
+            m.setMessage("User Registration success, Activation link sent to email");
+            m.setStatus(false);
             return m;
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,4 +79,41 @@ public class UserController {
             return m;
         }
     }
+    
+     /**
+     * Activate User Account by validating verification code sent to email link
+     *
+     * @param model
+     * @param userID
+     * @param emailID
+     * @param enc encrypted verification code
+     * @return
+     */
+    @RequestMapping(value = "/activateaccount", method = RequestMethod.GET)
+    public String activateaccount(ModelMap model, @RequestParam("ID") int userID, @RequestParam("code") String enc) {
+        log.info("activateaccountclicked " + userID);
+        String verifycode = util.decyptString(enc);
+        user u = service.getUserByID(userID);
+        if (u == null) {
+            log.info("Invalid request");
+            model.addAttribute("message", "Invalid request");
+            return "activateaccount";
+        }
+        if (!verifycode.equals(u.getUser_Email())) {
+            log.info("Invalid link Please click on correct link..");
+            model.addAttribute("message", "Invalid link Please click on correct link..");
+            return "activateaccount";
+        }
+        if (u.getUser_isActive().equalsIgnoreCase("true")) {
+            log.info("account alreay activated");
+            model.addAttribute("message", "Link is invalid account is already activated..");
+            return "activateaccount";
+        }
+        u.setUser_isActive("true");
+        service.SaveUser(u);
+        log.info("account successfully activated..");
+        model.addAttribute("message", "Account Succesfully activated you can login to your account");
+        return "activateaccount";
+    }
+
 }

@@ -412,7 +412,7 @@ public class SendMail extends Thread {
                 + "																				<td valign=\"top\" class=\"textContent\">\n"
                 + "																				\n"
                 + "																					<h3 mc:edit=\"header\" style=\"color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;\">Welcome to Glovision Techno Services</h3>\n"
-                + "																					<div mc:edit=\"body\" style=\"text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;\">Dear Cutsomer,<br/>\n"
+                + "																					<div mc:edit=\"body\" style=\"text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;\">Dear Customer,<br/>\n"
                 + "               Your Account with Glovision Techno Services with UserID " + userID + " has been successfully created you can activate your account by clicking the below link.After that you can login to your account. Thank you</div>\n"
                 + "																				</td>\n"
                 + "																			</tr>\n"

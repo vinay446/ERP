@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.ui.ModelMap;
 
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,7 +38,7 @@ public class util {
      * @param req
      * @return encrypted string, null if exception raises
      */
-    public static String encryptString(String req) { 
+    public static String encryptString(String req) {
         return encrypt(key, initvector, req);
     }
 
@@ -126,7 +125,6 @@ public class util {
             return null;
         }
     }
-    
 
     public static void main(String[] args) {
         System.out.println("starting..");

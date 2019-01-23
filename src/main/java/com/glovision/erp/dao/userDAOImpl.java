@@ -35,7 +35,7 @@ public class userDAOImpl implements userDAO{
 
     @Override
     public void SaveUser(user user) {
-        getSession().save(user);
+        getSession().saveOrUpdate(user);
     }
 
     @Override

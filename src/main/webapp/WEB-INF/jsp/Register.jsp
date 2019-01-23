@@ -84,7 +84,7 @@
                             <button type="submit" class="btn waves-effect waves-light col s12">Register Now</button>
                         </div>
                         <div class="input-field col s12">
-                            <p class="margin center medium-small sign-up">Already have an account? <a href="../salesdashboard/user-login.html">Login</a></p>
+                            <p class="margin center medium-small sign-up">Already have an account? <a href="<c:url value="/"/>">Login</a></p>
                         </div>
                     </div>
                 </form>
