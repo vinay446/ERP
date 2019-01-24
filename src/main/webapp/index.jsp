@@ -64,9 +64,9 @@
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix pt-5">person_outline</i>
-                            <input id="username" type="text" name="username"  ng-model="username" required="">
-                            <label for="username" class="center-align">Username</label>
-                            <span style="color:red;font-size: 12px" ng-show="loginform.username.$touched && loginform.username.$invalid">The name is required.</span>
+                            <input id="emailID" type="text" name="emailID"  ng-model="emailID" required="">
+                            <label for="emailID" class="center-align">Email</label>
+                            <span style="color:red;font-size: 12px" ng-show="loginform.emailID.$touched && loginform.emailID.$invalid">The name is required.</span>
 
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <a href="<c:url value="/"/>" class="btn waves-effect waves-light col s12">Login</a>
+                            <button type="submit" class="btn waves-effect waves-light col s12">Login</button>
                         </div>
                     </div>
                     <div class="row">

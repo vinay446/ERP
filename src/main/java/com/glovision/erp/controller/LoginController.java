@@ -5,15 +5,21 @@
  */
 package com.glovision.erp.controller;
 
+import com.glovision.erp.model.login;
+import com.glovision.erp.model.user;
 import com.glovision.erp.service.userService;
+import com.glovision.erp.util.message;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -26,24 +32,42 @@ public class LoginController {
     private static Logger log = Logger.getLogger(LoginController.class);
 
     @Autowired
-    private userService userservice;
-
-   
+    private userService userservice; // This will auto-inject the user service into the controller.
 
     // Checks if the user credentials are valid or not.
-    @RequestMapping(value = "/uservalidate", method = RequestMethod.POST)
-    public ModelAndView validateUsr(@RequestParam("username") String username, @RequestParam("password") String password) {
-        String msg = "";
-        boolean isValid = userservice.findUser(username, password);
-        log.info("Is user valid?= " + isValid);
+    @RequestMapping(value = "/uservalidate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody message validateUsr(@RequestBody user us) {
+        System.out.println("tesdfdfdft");
 
-        if (isValid) {
-            msg = "Welcome " + username + "!";
-        } else {
-            msg = "Invalid credentials";
+        System.out.println(us.getUser_Email()+ " " + us.getUser_password());
+        //String msg = "";
+        message ms = new message();
+        
+        user u = userservice.findByEmailID(us.getUser_Email());
+        if(u == null)
+        {
+        ms.setMessage("Entered emailID doesn't exists");
+        log.info("Entered emailID doesn't exists");
+        ms.setStatus(false);
+        return ms;
         }
-
-        return new ModelAndView("result", "output", msg);
+        
+        if(us.getUser_password().equals(u.getUser_password()))
+        {
+        
+           log.info("Success");
+            ms.setStatus(true);
+            return ms;
+        }
+        else{
+             log.info("failed to login");
+            ms.setMessage("Password not matched");
+            ms.setStatus(false);
+            return ms;
+        }
+        
+        
+       
     }
 
     /**

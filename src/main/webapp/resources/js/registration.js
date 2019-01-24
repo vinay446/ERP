@@ -17,16 +17,16 @@ app.controller('registrationctrl', function ($scope, $http) {
         if ($scope.password !== $scope.cpassword) {
             $scope.message = "Passwords not matched..";
             return;
-        }   
+        }
         document.body.classList.remove('loaded');
-        var data = {
+        var data = {          
             user_Name: $scope.username,
             user_Email: $scope.emailID,
-            user_password: $scope.password
+            user_password: $scope.password            
         };
         $http.post($scope.contextpath + "/registerUser", JSON.stringify(data)).then(function (response) {
-            var data = response.data;
-            var status = data.status;            
+            var data = response.data;            
+            var status = data.status;
             var message = data.message;
             $scope.message = message;           
             document.body.classList.add('loaded');
