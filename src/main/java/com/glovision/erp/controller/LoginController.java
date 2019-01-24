@@ -9,8 +9,10 @@ import com.glovision.erp.model.login;
 import com.glovision.erp.model.user;
 import com.glovision.erp.service.userService;
 import com.glovision.erp.util.message;
+import com.glovision.erp.util.util;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -36,8 +38,10 @@ public class LoginController {
 
     // Checks if the user credentials are valid or not.
     @RequestMapping(value = "/uservalidate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody message validateUsr(@RequestBody user us) {
+    public @ResponseBody message validateUsr(@RequestBody user us,HttpSession httpSession) {
         System.out.println("tesdfdfdft");
+        
+        
 
         System.out.println(us.getUser_Email()+ " " + us.getUser_password());
         //String msg = "";
@@ -52,12 +56,26 @@ public class LoginController {
         return ms;
         }
         
-        if(us.getUser_password().equals(u.getUser_password()))
+        //check user activation link
+        if(!u.getUser_isActive().equals("true"))
+        {
+        log.info("User has not activated the registration link");
+            ms.setStatus(false);
+            ms.setMessage("User has not activated the registration link");
+            return ms;
+            
+        }
+            
+        //Check with the encryption password
+        if(util.encryptString(us.getUser_password()).equals(u.getUser_password()))
         {
         
            log.info("Success");
             ms.setStatus(true);
+           //set the http session
+            httpSession.setAttribute("emailID",us.getUser_Email());
             return ms;
+        
         }
         else{
              log.info("failed to login");
@@ -69,6 +87,9 @@ public class LoginController {
         
        
     }
+    
+    
+   
 
     /**
      * saves username and password in cookies

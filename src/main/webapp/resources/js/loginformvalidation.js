@@ -7,23 +7,17 @@
 
 var helloAjaxApp = angular.module("myApp", []);
 
-helloAjaxApp.controller("myCtrl", ['$scope', '$http', function ($scope, $http) {
+helloAjaxApp.controller("myCtrl", ['$scope', '$http', '$window', function ($scope, $http, $window) {
 
 
         $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8";
 
         $scope.sendPost = function () {
 
-            alert($scope.emailID.toString());
-//            var objectData =
-//                    {
-//                        Username: $scope.username.toString(),
-//                        Password: $scope.password.toString()
-//                    };
-//
-//            var objectDataString = JSON.stringify(objectData);
+            //alert($scope.emailID.toString());
 
-            alert($scope.emailID.toString());
+
+
             $http({
                 url: 'uservalidate',
                 method: "POST",
@@ -39,15 +33,22 @@ helloAjaxApp.controller("myCtrl", ['$scope', '$http', function ($scope, $http) {
                 console.log(response.data);
                 // $scope.message = response.data;
                 var data = response.data;
-                alert(data);
+                //alert(data);
                 var status = data.status;
-                alert(status);
-                if (!status)
+                //  alert(data.message);
+
+                //on success go to next page
+                if (status === true)
                 {
-                    $scope.message = data.message;
-                    return;
+                    $window.location.href = '../../jsp/home.jsp';
+
+
                 }
-                alert("Success");
+
+                $scope.message = data.message;
+                return;
+
+
 
 
             }, function (response) {
