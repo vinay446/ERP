@@ -5,6 +5,8 @@
  */
 package com.glovision.erp.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -52,5 +54,28 @@ public class CommonController {
     @RequestMapping(value="/register" , method= RequestMethod.GET)
     public String registrationpage(ModelMap model){
         return "Register";
+    }
+    
+    /**
+     * Home page redirection
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value="/home",method=RequestMethod.GET)
+    public String homePage(ModelMap model){
+        return "home";
+    }
+    
+    
+    @RequestMapping(value="/logout",method=RequestMethod.GET)
+    public String logout(ModelMap model,HttpServletRequest request){
+        log.info("Log out request");
+        HttpSession session = request.getSession();
+        if(session.getAttribute("emailID")==null){
+            log.warn("INVALID LOG OUT REQUEST...");
+            return "404";
+        }
+        session.invalidate();
+        return "redirect:/";
     }
 }
