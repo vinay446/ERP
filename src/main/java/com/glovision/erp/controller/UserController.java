@@ -64,7 +64,7 @@ public class UserController {
             u.setUser_password(util.encryptString(u.getUser_password()));
             service.SaveUser(u);
             String verifycode = util.encryptString(u.getUser_Email().trim());
-            String link = "192.168.0.127:8084/erp/activateaccount?ID=" + u.getUser_Id() + "&code=" + URLEncoder.encode(verifycode);
+            String link = "localhost:8084/erp/activateaccount?ID=" + u.getUser_Id() + "&code=" + URLEncoder.encode(verifycode);
             SendMail se = new SendMail(u.getUser_Email(), "welocme@glovision.co", "WELCOME", u.getUser_Name(), link);
             se.start();
             Thread.sleep(3000);
