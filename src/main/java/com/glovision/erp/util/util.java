@@ -1,23 +1,14 @@
 package com.glovision.erp.util;
 
 import com.glovision.erp.configuration.ApplicationConfiguration;
+import java.util.Arrays;
 import java.util.Properties;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
-import org.springframework.ui.ModelMap;
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 /**
  * Common utility classes
@@ -126,7 +117,7 @@ public class util {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String... args) {
         System.out.println("starting..");
         
     }

@@ -66,7 +66,12 @@ public class CommonController {
         return "home";
     }
     
-    
+    /***
+     * logout request handler
+     * @param model
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/logout",method=RequestMethod.GET)
     public String logout(ModelMap model,HttpServletRequest request){
         log.info("Log out request");

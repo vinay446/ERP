@@ -30,6 +30,18 @@
         <link href="<c:url value="/resources/css/perfect-scrollbar.css"/>" type="text/css" rel="stylesheet">
         <link href="<c:url value="/resources/css/jquery-jvectormap.css"/>" type="text/css" rel="stylesheet">
         <link href="<c:url value="/resources/css/flag-icon.min.css"/>" type="text/css" rel="stylesheet">
+        <%
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+            String emailID = (String) session.getAttribute("emailID");
+            if (emailID == null) {
+                response.sendRedirect(request.getContextPath() + "/logout?msg=Session Time out Please login again&req=dashboard");
+            }
+            pageContext.setAttribute("emailID", emailID);
+            pageContext.setAttribute("page", "Dashboard");
+        %>
     </head>
     <body>
 
