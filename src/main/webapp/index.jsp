@@ -61,6 +61,7 @@
 
                         </div>
                     </div>
+                             <b><p style="color: red" >{{message}}</p></b>
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix pt-5">person_outline</i>
@@ -82,12 +83,13 @@
                     <div class="row">
                         <div class="col s12 m12 l12 ml-2 mt-3">
                             <input type="checkbox" id="remember-me" />
+                            
                             <label for="remember-me">Remember me</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <button type="submit" class="btn waves-effect waves-light col s12">Login</button>
+                            <button type="submit" class="btn waves-effect waves-light col s12" >Login</button>
                         </div>
                     </div>
                     <div class="row">
