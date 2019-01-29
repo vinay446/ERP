@@ -26,7 +26,7 @@ app.controller('registrationctrl', function ($scope, $http) {
         };
         $http.post($scope.contextpath + "/registerUser", JSON.stringify(data)).then(function (response) {
             var data = response.data;            
-                var status = data.status;
+           var status = data.status;
             var message = data.message;
             $scope.message = message;           
             document.body.classList.add('loaded');

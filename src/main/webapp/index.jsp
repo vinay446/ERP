@@ -18,6 +18,7 @@
         <!-- Favicons-->
         <%-- Angular library --%>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
         <link rel="icon" href="<c:url value="/resources/images/glovision.png"/>" sizes="32x32">
         <!-- For iPhone -->
@@ -61,12 +62,18 @@
 
                         </div>
                     </div>
-                             <b><p style="color: red" >{{message}}</p></b>
+                           
+                            <b><p style="color: red" >{{message}}</p></b><br>
+                             
+                            <%-- Passing context path --%>
+                            <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>
+                            
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix pt-5">person_outline</i>
                             <input id="emailID" type="text" name="emailID"  ng-model="emailID" required="">
                             <label for="emailID" class="center-align">Email</label>
+                          
                             <span style="color:red;font-size: 12px" ng-show="loginform.emailID.$touched && loginform.emailID.$invalid">The name is required.</span>
 
                         </div>
@@ -79,6 +86,7 @@
                             <span style="color:red;font-size: 12px" ng-show="loginform.password.$touched && loginform.password.$invalid">The name is required.</span>
 
                         </div>
+                          
                     </div>
                     <div class="row">
                         <div class="col s12 m12 l12 ml-2 mt-3">

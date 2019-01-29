@@ -16,6 +16,7 @@ helloAjaxApp.controller("myCtrl", ['$scope', '$http', '$window', function ($scop
 
             //alert($scope.emailID.toString());
 
+             
 
 
             $http({
@@ -37,10 +38,12 @@ helloAjaxApp.controller("myCtrl", ['$scope', '$http', '$window', function ($scop
                 var status = data.status;
                 //  alert(data.message);
 
+                var redirectpage = $scope.contextpath + "/home";
+               
                 //on success go to next page
                 if (status === true)
                 {
-                    $window.location.href = '../../jsp/home.jsp';
+                    $window.location.href = redirectpage;
 
 
                 }
