@@ -18,7 +18,7 @@
         <!-- Favicons-->
         <%-- Angular library --%>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
         <link rel="icon" href="<c:url value="/resources/images/glovision.png"/>" sizes="32x32">
         <!-- For iPhone -->
@@ -45,6 +45,24 @@
 
     <body class="cyan" ng-app="myApp">
 
+        <%--  <%
+            Cookie[] cookies = request.getCookies();
+            String emailID = "", password = "", rememberVal = "";
+            if (cookies != null) {
+                for (Cookie cookie : cookies) {
+                    if (cookie.getName().equals("cookuser")) {
+                        emailID = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("cookpass")) {
+                        password = cookie.getValue();
+                    }
+                    if (cookie.getName().equals("cookrem")) {
+                        rememberVal = cookie.getValue();
+                    }
+                }
+            }
+        %> --%>
+
 
         <!-- Start Page Loading -->
         <div id="loader-wrapper" >
@@ -62,6 +80,12 @@
 
                         </div>
                     </div>
+
+                    <b><p style="color: red" >{{message}}</p></b><br>
+
+                    <%-- Passing context path --%>
+                    <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>
+
                            
                             <b><p style="color: red" >{{message}}{parm.msg}</p></b><br>
                              
@@ -71,9 +95,9 @@
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix pt-5">person_outline</i>
-                            <input id="emailID" type="text" name="emailID"  ng-model="emailID" required="">
+                            <input id="emailID" type="text" ng-model="emailID"   required="">
                             <label for="emailID" class="center-align">Email</label>
-                          
+
                             <span style="color:red;font-size: 12px" ng-show="loginform.emailID.$touched && loginform.emailID.$invalid">The name is required.</span>
 
                         </div>
@@ -81,17 +105,19 @@
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix pt-5">lock_outline</i>
-                            <input id="password" type="password" name="password" ng-model="password" required="">
+                            <input id="password" type="password"  ng-model="password"   required="">
                             <label for="password">Password</label>
                             <span style="color:red;font-size: 12px" ng-show="loginform.password.$touched && loginform.password.$invalid">The name is required.</span>
 
                         </div>
-                          
+
                     </div>
                     <div class="row">
                         <div class="col s12 m12 l12 ml-2 mt-3">
-                            <input type="checkbox" id="remember-me" />
-                            
+                            <input type="checkbox" id="remember-me" ng-model="rememberMe.checked" ng-click="checkCondition(rememberMe)"/>
+                                   
+                                                         
+
                             <label for="remember-me">Remember me</label>
                         </div>
                     </div>
