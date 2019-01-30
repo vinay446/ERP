@@ -63,7 +63,7 @@
                         </div>
                     </div>
                            
-                            <b><p style="color: red" >{{message}}</p></b><br>
+                            <b><p style="color: red" >{{message}}{parm.msg}</p></b><br>
                              
                             <%-- Passing context path --%>
                             <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>

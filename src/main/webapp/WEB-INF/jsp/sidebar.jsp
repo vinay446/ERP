@@ -3,13 +3,23 @@
     Created on : 24 Jan, 2019, 7:59:13 PM
     Author     : glodeveloper
 --%>
-
+<%
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+    String emailID = (String) session.getAttribute("emailID");
+    if (emailID == null) {
+        response.sendRedirect(request.getContextPath() + "/logout?msg=Session Time out Please login again&req=dashboard");
+    }
+    pageContext.setAttribute("emailID", emailID);   
+%>
 <aside id="left-sidebar-nav" class="nav-expanded nav-lock nav-collapsible">
     <div class="brand-sidebar">
         <h1 class="logo-wrapper">
-            <a href="index.html" class="brand-logo darken-1">
-                <!-- <img src="images/materialize-logo.png" alt="materialize logo">-->
-                <span class="logo-text hide-on-med-and-down">Glo Sales Dashboard</span>
+            <a href="<c:url value="/home"/>" class="brand-logo darken-1">
+               <!-- <img src="images/materialize-logo.png" alt="materialize logo">-->
+               <span class="logo-text hide-on-med-and-down">Glo Sales Dashboard</span>
             </a>
             <a href="#" class="navbar-toggler">
                 <i class="material-icons">radio_button_checked</i>
@@ -20,26 +30,26 @@
         <li class="no-padding">
             <ul class="collapsible" data-collapsible="accordion">
                 <li class="bold">
-                    <a class="collapsible-header waves-effect waves-cyan active">
+                    <a  href="<c:url value="/home"/>">
                         <i class="material-icons">dashboard</i>
                         <span class="nav-text">Dashboard</span>
                     </a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li class="active">
-                                <a href="index.html">
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                    <span>Admin Dashboard</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="dashboard-analytics.html">
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                    <span>Analytics</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <!--                    <div class="collapsible-body">
+                                            <ul>
+                                                <li class="active">
+                                                    <a href="index.html">
+                                                        <i class="material-icons">keyboard_arrow_right</i>
+                                                        <span>Admin Dashboard</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboard-analytics.html">
+                                                        <i class="material-icons">keyboard_arrow_right</i>
+                                                        <span>Analytics</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>-->
                 </li>
 
 
@@ -62,29 +72,29 @@
                                </a>
                              </li>-->
                             <li>
-                                <a href="form-layouts.html">
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                    <span>Form Layouts</span>
+                                <a href="<c:url value="/category"/>">
+                                   <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>Category</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="form-validation.html">
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                    <span>Form Validations</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-masks.html">
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                    <span>Form Masks</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="form-file-uploads.html">
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                    <span>File Uploads</span>
-                                </a>
-                            </li>
+                            <!--                            <li>
+                                                            <a href="form-validation.html">
+                                                                <i class="material-icons">keyboard_arrow_right</i>
+                                                                <span>Form Validations</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="form-masks.html">
+                                                                <i class="material-icons">keyboard_arrow_right</i>
+                                                                <span>Form Masks</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="form-file-uploads.html">
+                                                                <i class="material-icons">keyboard_arrow_right</i>
+                                                                <span>File Uploads</span>
+                                                            </a>
+                                                        </li>-->
                         </ul>
                     </div>
                 </li>

@@ -78,9 +78,19 @@ public class CommonController {
         HttpSession session = request.getSession();
         if(session.getAttribute("emailID")==null){
             log.warn("INVALID LOG OUT REQUEST...");
-            return "404";
+            return "redirect:/?msg=INVALID REQUEST";
         }
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/?msg=successfully loged out";
+    }
+    
+    /**
+     * Category page controller
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value="/category",method=RequestMethod.GET)
+    public String category(ModelMap model){
+        return "category";
     }
 }
