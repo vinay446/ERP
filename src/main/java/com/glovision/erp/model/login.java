@@ -11,17 +11,30 @@ package com.glovision.erp.model;
  */
 public class login {
 
-    private String userName;
+    private String emailID;
 
     private String password;
+    
+    private boolean rememberMe;
 
-    public String getUserName() {
-        return userName;
+    public String getEmailID() {
+        return emailID;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
     }
+
+    public boolean isRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
+
+  
+    
 
     public String getPassword() {
         return password;
