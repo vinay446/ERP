@@ -12,26 +12,23 @@ helloAjaxApp.controller("myCtrl", ['$scope', '$http', '$window', function ($scop
 
         $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8";
 
-        
-      //Check the remember me condition
+
+        //Check the remember me condition
         $scope.rememberme = false;
         $scope.checkCondition = function (rememberMe) {
-            alert(rememberMe);
+            //alert(rememberMe);
             if (rememberMe.checked) {
-                alert("true");
+
                 $scope.rememberme = true;
-                }
-//             else {
-//                alert("false");
-//                $scope.rememberme = false;
-//            }
+            }
+
         };
         $scope.sendPost = function () {
 
-             //alert($scope.emailID.toString() + "dddd" + $scope.password.toString() + "reemenbt" + $scope.rememberme + "dfdf");
+            //alert($scope.emailID.toString() + "dddd" + $scope.password.toString() + "reemenbt" + $scope.rememberme + "dfdf");
 
 
-            
+
             $http({
                 url: 'uservalidate',
                 method: "POST",

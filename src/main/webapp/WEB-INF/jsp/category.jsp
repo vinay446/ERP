@@ -92,7 +92,7 @@
                                                     </div>
                                                     <div class="input-field col s4">
                                                         <label for="cdesc">Category Description *</label>
-                                                        <textarea id="cdesc" data-error=".errorTxt1" ng-model="cdesc" rows="10" required ></textarea>
+                                                        <input type="text" id="cdesc" data-error=".errorTxt1" ng-model="cdesc" rows="10" required >
                                                         <div class="errorTxt2"></div>
                                                         <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'" />
                                                     </div>                                                    
@@ -122,14 +122,14 @@
                                 <div class="divider"></div>
                                 <!--DataTables example-->
                                 <div id="table-datatables">
-                                    <h4 class="header">DataTables example</h4>
+                                    <h4 class="header">List all Categories</h4>
                                     <div class="row">
                                         <div class="col s6">
 
                                         </div>
                                         <div class="col s12">
                                             <table id="data-table-simple" class="responsive-table display" cellspacing="0">
-                                                <thead>
+                                                <thead style="background-color:#536dfe;color:white;">
                                                     <tr>
                                                         <th>Category_ID</th>
                                                         <th>Category_Name</th>

@@ -10,6 +10,7 @@ import com.glovision.erp.model.user;
 import com.glovision.erp.service.userService;
 import com.glovision.erp.util.message;
 import com.glovision.erp.util.util;
+import java.io.IOException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +39,7 @@ public class LoginController {
     // Checks if the user credentials are valid or not.
     @RequestMapping(value = "/uservalidate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    message validateUsr(@RequestBody login lgn, HttpServletRequest request, HttpServletResponse response, HttpSession httpSession) {
+    message validateUsr(@RequestBody login lgn, HttpServletRequest request, HttpServletResponse response, HttpSession httpSession) throws IOException {
         System.out.println("tesdfdfdft");
 
         System.out.println("EmailID=" + lgn.getEmailID() + "Password=" + lgn.getPassword() + "Remember me= " + lgn.isRememberMe());
@@ -94,13 +95,16 @@ public class LoginController {
      * @param emailID
      * @param password
      */
-    private void savecookies(HttpServletResponse response, String emailID, String password) {
+    private void savecookies(HttpServletResponse response, String emailID, String password){
         Cookie c1 = new Cookie("emailID", emailID);
         Cookie c2 = new Cookie("password", password);
         c1.setMaxAge(60 * 60 * 24 * 365 * 10);
         c2.setMaxAge(60 * 60 * 24 * 365 * 10);
         response.addCookie(c1);
         response.addCookie(c2);
+        System.out.println("Cookies session");
+       
+        
     }
 
 }

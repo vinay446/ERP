@@ -3,6 +3,7 @@
     Created on : 24 Jan, 2019, 7:59:13 PM
     Author     : glodeveloper
 --%>
+
 <%
     response.setHeader("Cache-Control", "no-cache");
     response.setHeader("Cache-Control", "no-store");
@@ -76,7 +77,16 @@
                                    <i class="material-icons">keyboard_arrow_right</i>
                                     <span>Category</span>
                                 </a>
+                                
                             </li>
+                               <li>
+                                <a href="<c:url value='/product'/>">
+                                   <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>Product</span>
+                                </a>
+                            </li>
+                            
+                            
                             <!--                            <li>
                                                             <a href="form-validation.html">
                                                                 <i class="material-icons">keyboard_arrow_right</i>
