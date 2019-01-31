@@ -38,4 +38,10 @@ public interface productDAO {
      * @return list of product obj
      */
     List<product> listAllProducts();
+    
+    /**
+     * Delete all products from given category
+     * @param categoryID 
+     */
+    void deleteProducts(String categoryID);
 }

@@ -19,28 +19,33 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Service("productService")
 public class productServiceImpl implements productService {
-
+    
     @Autowired
     productDAO product;
-
+    
     @Override
     public product findByProductID(String productID) {
         return product.findByProductID(productID);
     }
-
+    
     @Override
     public void createProduct(product p) {
         product.createProduct(p);
     }
-
+    
     @Override
     public void deleteProduct(String productID) {
         product.deleteProduct(productID);
     }
-
+    
     @Override
     public List<product> listAllProducts() {
         return product.listAllProducts();
     }
-
+    
+    @Override
+    public void deleteProducts(String categoryID) {
+         product.deleteProducts(categoryID);
+    }
+    
 }

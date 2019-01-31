@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,9 +28,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class CategoryController {
-    
-    private static  Logger log = Logger.getLogger(CategoryController.class);
-    
+
+    private static Logger log = Logger.getLogger(CategoryController.class);
+
     @Autowired
     categoryService cserv;
 
@@ -40,10 +41,10 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value = "/category", method = RequestMethod.GET)
-    public String category(ModelMap model) {        
+    public String category(ModelMap model) {
         log.info("Loading Categories...");
         List<category> categoryList = cserv.listAllCategories();
-        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("categoryList", categoryList);
         return "category";
     }
 
@@ -64,13 +65,15 @@ public class CategoryController {
             log.warn("Category " + ct.getCategory_Name() + " already exists.. returning error...");
             msg.setMessage("Category " + ct.getCategory_Name() + " already exists..");
             msg.setStatus(false);
+            model.addAttribute("msg", msg.getMessage());
             return msg;
         }
         String user = (String) session.getAttribute("emailID");
-        if (user == null) {
+        if (!util.SessionCheck(session)) {
             log.warn("Session Timeout, Please login to continue... returning error....");
             msg.setMessage("Session Timeout, Please login to continue");
             msg.setStatus(false);
+            model.addAttribute("msg", msg.getMessage());
             return msg;
         }
         int ID = util.generateRandomNumber();
@@ -84,7 +87,33 @@ public class CategoryController {
         cserv.createCategory(ct);
         msg.setStatus(true);
         msg.setMessage("Category " + ct.getCategory_Name() + " Successfully Created...");
+        model.addAttribute("msg", msg.getMessage());
         log.info("New Category " + ct.getCategory_Name() + " Successfully Created...");
         return msg;
+    }
+
+    /**
+     * deletes a category from database...
+     *
+     * @param model
+     * @param category_Id
+     * @return
+     */
+    @RequestMapping(value = "/deleteCategory/{category_Id}", method = RequestMethod.GET)
+    public String deleteCategory(ModelMap model, @PathVariable String category_Id, HttpSession session) {
+        log.warn("Deleting Category " + category_Id + " from database...");
+        if (!util.SessionCheck(session)) {
+            model.addAttribute("msg", "Session Timeout, Please login to continue...");
+            log.warn("Session Timeout, Please login to continue... returning error....");
+            return "redirect:/category";
+        }
+        if (cserv.findById(category_Id) == null) {
+            log.warn("category does not exist..");
+            model.addAttribute("msg", "category does not exist..");
+            return "redirect:/category";
+        }
+        cserv.deleteCategory(category_Id);
+        model.addAttribute("msg", "Category " + category_Id + " Deleted Successfully..");
+        return "redirect:/category";
     }
 }

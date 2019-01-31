@@ -6,6 +6,7 @@
 package com.glovision.erp.dao;
 
 import com.glovision.erp.model.category;
+import com.glovision.erp.service.productService;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;

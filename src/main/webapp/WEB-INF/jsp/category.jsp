@@ -64,6 +64,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col s10 m6 l6">
+                                    <center><h5 style="color: red" >{{message}}${param.msg}${msg}</h5></center>
                                     <h5 class="breadcrumbs-title">Product Category</h5>
                                     <ol class="breadcrumbs">
                                         <li><a href="<c:url value="/home"/>">Dashboard</a>
@@ -83,8 +84,7 @@
                                         <h4 class="header2">Create New Product Category</h4>
                                         <div class="row">
                                             <form class="formValidate" id="formValidate" ng-submit="ctrl.submit()" name="newCategoryForm"  >
-                                                <div class="row">
-                                                    <b><p style="color: red" >{{message}}${param.msg}</p></b>
+                                                <div class="row">                                                    
                                                     <div class="input-field col s4">
                                                         <label for="cname">Category Name*</label>
                                                         <input id="cname" name="cname" ng-model="cname" type="text" data-error=".errorTxt1" required>
@@ -94,7 +94,7 @@
                                                         <label for="cdesc">Category Description *</label>
                                                         <textarea id="cdesc" data-error=".errorTxt1" ng-model="cdesc" rows="10" required ></textarea>
                                                         <div class="errorTxt2"></div>
-                                                        <input type="hidden" ng-model="contextpath" ng-init="contextpath='${pageContext.request.contextPath}'" />
+                                                        <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'" />
                                                     </div>                                                    
                                                     <div class="input-field col s4">
                                                         <button class="btn waves-effect waves-light right submit" type="submit" name="action">Submit
@@ -137,6 +137,7 @@
                                                         <th>Category_Creation Time</th>
                                                         <th>Category_Created By</th>
                                                         <th>Category_Last Updated Time</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>                                                
                                                 <tbody>
@@ -148,6 +149,8 @@
                                                             <td>${DateUtil.epochToDate(category.category_creationTime)}</td>
                                                             <td>${category.category_createdBy}</td>
                                                             <td>${DateUtil.epochToDate(category.category_UpdationTime)}</td>
+                                                            <td><i class="material-icons" title="EDIT">build</i>
+                                                                <i class="material-icons" onclick="deleteCategory('${category.category_Id}', '${pageContext.request.contextPath}')" title="DELETE">delete</i> </td>
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>
@@ -193,5 +196,6 @@
         <!--custom-script.js - Add your own theme custom JS-->
         <script type="text/javascript" src="<c:url value="/resources/js/custom-script.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/category.js"/>"></script>
+        <%@include file="modal.jsp" %>        
     </body>
 </html>
