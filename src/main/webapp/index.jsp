@@ -41,29 +41,22 @@
 
     </head>  	
 
-
-
     <body class="cyan" ng-app="myApp">
 
-         <%
+        <%
+
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Cache-Control", "no-store");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+
             Cookie[] cookies = request.getCookies();
-            String emailID = "", password = "", rememberVal = "";
-           System.out.println("Cookies="+cookies);
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("emailID")) {
-                        emailID = cookie.getValue();
-                        System.out.println("EmailId"+emailID);
-                        
-                    }
-                    if (cookie.getName().equals("password")) {
-                        password = cookie.getValue();
-                        System.out.println("Password="+password);
-                        
-                    }
-//                    if (cookie.getName().equals("cookrem")) {
-//                        rememberVal = cookie.getValue();
-//                    }
+            for (Cookie c : cookies) {
+                String cookiename = c.getName();
+                if (cookiename.equals("emailID")) {
+                    pageContext.setAttribute("emailID", c.getValue());
+                } else if (cookiename.equals("password")) {
+                    pageContext.setAttribute("password", c.getValue());
                 }
             }
         %> 
@@ -83,14 +76,14 @@
                         <div class="input-field col s12 center">
                             <img src="<c:url value="/resources/images/glovision.png"/>" alt="" >
 
-                    <b><p style="color: red" >{{message}}</p></b><br>
+                            <b><p style="color: red" >{{message}}</p></b><br>
 
-                    <%-- Passing context path --%>
-                    <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>
+                            <%-- Passing context path --%>
+                            <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>
 
-                           
+
                             <b><p style="color: red" >{{message}}${parm.msg}</p></b><br>
-                             
+
                         </div>
                     </div>
 
@@ -99,16 +92,16 @@
                     <%-- Passing context path --%>
                     <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>
 
-                           
-                            <b><p style="color: red" >{{message}}${param.msg}</p></b><br>
-                             
-                            <%-- Passing context path --%>
-                            <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>
-                            
+
+                    <b><p style="color: red" >{{message}}${param.msg}</p></b><br>
+
+                    <%-- Passing context path --%>
+                    <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>
+
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix pt-5">person_outline</i>
-                            <input id="emailID" type="text" ng-model="emailID" value="<%= emailID%>"  required="">
+                            <input id="emailID" type="text" ng-model="emailID" ng-init="emailID = '${emailID}'"  required="">
                             <label for="emailID" class="center-align">Email</label>
 
                             <span style="color:red;font-size: 12px" ng-show="loginform.emailID.$touched && loginform.emailID.$invalid">The name is required.</span>
@@ -118,7 +111,7 @@
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix pt-5">lock_outline</i>
-                            <input id="password" type="password"  ng-model="password" value="<%= password%>" required="">
+                            <input id="password" type="password"  ng-model="password" ng-init="password = '${password}'"  required="">
                             <label for="password">Password</label>
                             <span style="color:red;font-size: 12px" ng-show="loginform.password.$touched && loginform.password.$invalid">The name is required.</span>
 
@@ -128,8 +121,8 @@
                     <div class="row">
                         <div class="col s12 m12 l12 ml-2 mt-3">
                             <input type="checkbox" id="remember-me" ng-model="rememberMe.checked" ng-click="checkCondition(rememberMe)"/>
-                                   
-                                                         
+
+
 
                             <label for="remember-me">Remember me</label>
                         </div>

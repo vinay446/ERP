@@ -9,7 +9,7 @@
     <div class="footer-copyright">
         <div class="container">
             <span>
-                <a class="grey-text text-lighten-4" href="http://glovision.co/" target="_blank">
+                <a class="grey-text text-lighten-4" href="http://glovision.co/" target="_blank"></a>
 
                     © 2014-<%=DateUtil.getCurrentDate("yyyy")%> All Rights Reserved Design by Glovision Techno Services Pvt.Ltd
             </span>

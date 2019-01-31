@@ -1,7 +1,6 @@
 package com.glovision.erp.util;
 
 import com.glovision.erp.configuration.ApplicationConfiguration;
-import java.util.Arrays;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -117,6 +116,13 @@ public class util {
         }
     }
 
+    /**
+     * Generates a random number
+     * @return 
+     */
+    public static int generateRandomNumber(){
+        return (int) (Math.random() * 50000) + 1;
+    }
     public static void main(String... args) {
         System.out.println("starting..");
         

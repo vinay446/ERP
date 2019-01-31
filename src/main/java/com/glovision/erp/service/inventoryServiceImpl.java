@@ -10,8 +10,6 @@ package com.glovision.erp.service;
  * @author glodeveloper
  */
 import com.glovision.erp.dao.inventoryDAO;
-import com.glovision.erp.dao.inventoryDAO;
-import com.glovision.erp.model.inventory;
 import com.glovision.erp.model.inventory;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

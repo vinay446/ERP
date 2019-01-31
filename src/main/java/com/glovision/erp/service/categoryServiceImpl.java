@@ -10,8 +10,6 @@ package com.glovision.erp.service;
  * @author glodeveloper
  */
 import com.glovision.erp.dao.categoryDAO;
-import com.glovision.erp.dao.categoryDAO;
-import com.glovision.erp.model.category;
 import com.glovision.erp.model.category;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +41,11 @@ public class categoryServiceImpl implements categoryService {
     @Override
     public List<category> listAllCategories() {
         return category.listCategories();
+    }
+
+    @Override
+    public category findByCategoryName(String categoryName) {
+        return category.findByCategoryName(categoryName);
     }
 
 }

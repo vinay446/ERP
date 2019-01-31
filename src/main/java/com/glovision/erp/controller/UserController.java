@@ -52,9 +52,9 @@ public class UserController {
                 m.setStatus(false);
                 return m;
             }
-            int userID = (int) (Math.random() * 50000) + 1;
+            int userID = util.generateRandomNumber();
             while (service.getUserByID(userID) != null) {
-                userID = (int) (Math.random() * 50000) + 1;
+                userID = util.generateRandomNumber();
             }
             u.setUser_Id(userID);
             u.setUser_Role("user");

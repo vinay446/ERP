@@ -84,13 +84,4 @@ public class CommonController {
         return "redirect:/?msg=successfully loged out";
     }
     
-    /**
-     * Category page controller
-     * @param model
-     * @return 
-     */
-    @RequestMapping(value="/category",method=RequestMethod.GET)
-    public String category(ModelMap model){
-        return "category";
-    }
 }

@@ -6,10 +6,11 @@
 package com.glovision.erp.dao;
 
 import com.glovision.erp.model.category;
-import java.io.Serializable;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -46,6 +47,13 @@ public class categoryDAOImpl implements categoryDAO {
     @Override
     public List<category> listCategories() {
         return (List<category>) getSession().createCriteria(category.class).list();
+    }
+
+    @Override
+    public category findByCategoryName(String categoryName) {
+        Criteria cr = getSession().createCriteria(category.class);
+        cr.add(Restrictions.eq("category_Name", categoryName));
+        return (category) cr.uniqueResult();
     }
 
 }
