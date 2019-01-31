@@ -4,6 +4,7 @@
     Author     : glodeveloper
 --%>
 
+<%@page import="com.glovision.erp.util.util"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -49,7 +50,9 @@
             response.setHeader("Cache-Control", "no-store");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
-
+            if (util.SessionCheck(session)) {
+                response.sendRedirect(request.getContextPath()+"/home");
+            }
             Cookie[] cookies = request.getCookies();
             for (Cookie c : cookies) {
                 String cookiename = c.getName();
