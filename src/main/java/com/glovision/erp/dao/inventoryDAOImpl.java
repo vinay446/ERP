@@ -6,7 +6,6 @@
 package com.glovision.erp.dao;
 
 import com.glovision.erp.model.inventory;
-import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

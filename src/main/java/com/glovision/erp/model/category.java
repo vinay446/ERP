@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
-public class category {
+public class category implements Serializable{
     
     //Set the column names as set in the DB table
 
@@ -27,7 +27,7 @@ public class category {
     String category_Id;
 
     @Column(name = "category_Name")
-    String categoryName;
+    String category_Name;
 
     @Column(name = "category_Description")
     String category_Description;
@@ -35,7 +35,7 @@ public class category {
     @Column(name = "category_creationTime")
     long category_creationTime;
 
-    @Column(name = "category_createdByIndex")
+    @Column(name = "category_createdBy")
     String category_createdBy;
 
     @Column(name = "category_UpdationTime")
@@ -49,12 +49,12 @@ public class category {
         this.category_Id = category_Id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getCategory_Name() {
+        return category_Name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCategory_Name(String category_Name) {
+        this.category_Name = category_Name;
     }
 
     public String getCategory_Description() {

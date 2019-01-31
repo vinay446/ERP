@@ -44,5 +44,10 @@ public interface categoryService {
      */
     List<category> listAllCategories();
 
-    
+    /**
+     * find Object by Name
+     * @param categoryName
+     * @return 
+     */
+    category findByCategoryName(String categoryName);
 }

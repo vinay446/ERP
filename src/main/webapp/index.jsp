@@ -41,29 +41,8 @@
 
     </head>  	
 
-
-
     <body class="cyan" ng-app="myApp">
-
-        <%--  <%
-            Cookie[] cookies = request.getCookies();
-            String emailID = "", password = "", rememberVal = "";
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("cookuser")) {
-                        emailID = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("cookpass")) {
-                        password = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("cookrem")) {
-                        rememberVal = cookie.getValue();
-                    }
-                }
-            }
-        %> --%>
-
-
+     
         <!-- Start Page Loading -->
         <div id="loader-wrapper" >
             <div id="loader"></div>
@@ -87,7 +66,7 @@
                     <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>
 
                            
-                            <b><p style="color: red" >{{message}}{parm.msg}</p></b><br>
+                            <b><p style="color: red" >{{message}}${param.msg}</p></b><br>
                              
                             <%-- Passing context path --%>
                             <input type="hidden" ng-model="contextpath" ng-init="contextpath = '${pageContext.request.contextPath}'"/>

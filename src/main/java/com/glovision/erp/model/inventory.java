@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "inventory")
-public class inventory {
+public class inventory implements Serializable{
     
     //Set the column names as set in the DB table
 

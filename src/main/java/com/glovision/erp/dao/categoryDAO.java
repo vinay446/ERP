@@ -43,5 +43,12 @@ public interface categoryDAO {
      * @return list of all categories obj
      */
     List<category> listCategories();
+    
+    /**
+     * Find object by category name
+     * @param categoryName
+     * @return 
+     */
+    category findByCategoryName(String categoryName);
 
 }
