@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -97,6 +98,7 @@ public class CategoryController {
      *
      * @param model
      * @param category_Id
+     * @param session
      * @return
      */
     @RequestMapping(value = "/deleteCategory/{category_Id}", method = RequestMethod.GET)
@@ -115,5 +117,41 @@ public class CategoryController {
         cserv.deleteCategory(category_Id);
         model.addAttribute("msg", "Category " + category_Id + " Deleted Successfully..");
         return "redirect:/category";
+    }
+
+    /**
+     * Edits category model in database
+     * @param model
+     * @param session
+     * @param category_Id
+     * @param category_Name
+     * @param category_Description
+     * @param category_creationTime
+     * @param category_createdBy
+     * @param category_UpdationTime
+     * @return 
+     */
+    @RequestMapping(value = "/editCategory", method = RequestMethod.POST)
+    public @ResponseBody
+    String editCategory(ModelMap model, HttpSession session, @RequestParam("category_Id") String category_Id,
+            @RequestParam("category_Name") String category_Name, @RequestParam("category_Description") String category_Description,
+            @RequestParam("category_creationTime") String category_creationTime, @RequestParam("category_createdBy") String category_createdBy,
+            @RequestParam("category_UpdationTime") String category_UpdationTime) {
+        log.info("Edit category " + category_Id);
+        if (!util.SessionCheck(session)) {
+            log.warn(" returning error....");
+            return "Session Timeout, Please login to continue...";
+        }
+        String user = (String) session.getAttribute("emailID");
+        category cat = new category();
+        cat.setCategory_Id(category_Id);
+        cat.setCategory_Description(category_Description);
+        cat.setCategory_Name(category_Name);
+        cat.setCategory_createdBy(category_createdBy);
+        cat.setCategory_creationTime(Long.parseLong(category_creationTime));
+        cat.setCategory_UpdationTime(DateUtil.getEpoch());
+        cat.setCategory_createdBy(user);
+        cserv.createCategory(cat);
+        return "Updated Successfully....";
     }
 }

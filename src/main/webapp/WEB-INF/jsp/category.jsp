@@ -149,7 +149,9 @@
                                                             <td>${DateUtil.epochToDate(category.category_creationTime)}</td>
                                                             <td>${category.category_createdBy}</td>
                                                             <td>${DateUtil.epochToDate(category.category_UpdationTime)}</td>
-                                                            <td><i class="material-icons" title="EDIT">build</i>
+                                                            <td><i class="material-icons" title="EDIT" onclick="editCategory('${category.category_Id}', '${pageContext.request.contextPath}'
+                                                                                    , '${category.category_Name}', '${category.category_Description}', '${(category.category_creationTime)}',
+                                                                                    '${category.category_createdBy}', '${DateUtil.epochToDate(category.category_UpdationTime)}')">build</i>
                                                                 <i class="material-icons" onclick="deleteCategory('${category.category_Id}', '${pageContext.request.contextPath}')" title="DELETE">delete</i> </td>
                                                         </tr>
                                                     </c:forEach>
@@ -197,5 +199,78 @@
         <script type="text/javascript" src="<c:url value="/resources/js/custom-script.js"/>"></script>
         <script type="text/javascript" src="<c:url value="/resources/js/category.js"/>"></script>
         <%@include file="modal.jsp" %>        
+        <div class="modal fade" id="editModel" tabindex="-1" role="dialog" aria-labelledby="Label1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <center> <h5 class="modal-title" id=Label1">Edit Category</h5></center>
+                    </div>
+                    <div class="modal-body">
+                        <section id="content">
+                            <div class="container">
+                                <div class="divider"></div>
+                                <div id="jqueryvalidation" class="section">
+                                    <div class="row">
+                                        <div class="col s12 m12 ">
+                                            <div class="card-panel">
+                                                <div class="row">
+                                                    <form class="formValidate"   >
+                                                        <div class="row"> 
+                                                            <div class="input-field col s4">
+                                                                Category ID*
+                                                                <input id="cid" name="cid"  type="text" data-error=".errorTxt1" readonly>
+                                                            </div>
+                                                            <div class="input-field col s4">
+                                                                Category Name*
+                                                                <input id="cn" name="cn"  type="text" data-error=".errorTxt1" required>
+                                                                <div class="errorTxt1"></div>
+                                                            </div>
+                                                            <div class="input-field col s4">
+                                                                Category Description*
+                                                                <input type="text" id="cd" data-error=".errorTxt1"  rows="10" required >
+                                                                <div class="errorTxt2"></div>
+                                                            </div> 
+                                                            <div class="input-field col s4">
+                                                                Category_Creation Time*
+                                                                <input id="ctime" name="ctime"  type="text" data-error=".errorTxt1" readonly>
+                                                                <div class="errorTxt1"></div>
+                                                            </div>
+                                                            <div class="input-field col s4">
+                                                                Category_Created By*
+                                                                <input id="cby" name="cby"  type="text" data-error=".errorTxt1" readonly>
+                                                                <div class="errorTxt1"></div>
+                                                            </div>
+                                                            <div class="input-field col s4">
+                                                                Category_Last Updated Time*
+                                                                <input id="cltime" name="cltime"  type="text" data-error=".errorTxt1" readonly>
+                                                                <div class="errorTxt1"></div>
+                                                            </div>
+                                                            <div class="input-field col s4">
+                                                                <button class="btn waves-effect waves-light left submit" onclick="edit()" type="submit" name="action">Submit
+                                                                    <i class="material-icons right">send</i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- Floating Action Button -->
+
+                                <!-- Floating Action Button -->
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">                       
+                        <div class="input-field col s4">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#editModel').modal('close')">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
