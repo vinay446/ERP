@@ -112,6 +112,13 @@ public class DateUtil {
             return 0;
         }
     }
+    
+    
+     public static String convertEpochToDate(long date) {
+        String result = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date(date * 1000));
+        //System.out.println("Date"+date);
+        return result;
+    }
 
     public static void main(String[] args) {
         System.out.println("testing...");

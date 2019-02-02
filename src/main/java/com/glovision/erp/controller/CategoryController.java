@@ -6,6 +6,7 @@
 package com.glovision.erp.controller;
 
 import com.glovision.erp.model.category;
+import com.glovision.erp.model.product;
 import com.glovision.erp.service.categoryService;
 import com.glovision.erp.util.DateUtil;
 import com.glovision.erp.util.message;
@@ -14,6 +15,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,9 +30,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class CategoryController {
-    
-    private static  Logger log = Logger.getLogger(CategoryController.class);
-    
+
+    private static Logger log = Logger.getLogger(CategoryController.class);
+
     @Autowired
     categoryService cserv;
 
@@ -40,11 +43,21 @@ public class CategoryController {
      * @return
      */
     @RequestMapping(value = "/category", method = RequestMethod.GET)
-    public String category(ModelMap model) {        
+    public String category(ModelMap model) {
         log.info("Loading Categories...");
         List<category> categoryList = cserv.listAllCategories();
-        model.addAttribute("categoryList",categoryList);
+        model.addAttribute("categoryList", categoryList);
         return "category";
+    }
+
+    /* Use this to retrieve the categories data in json format */
+    @RequestMapping(value = "/listcategories/", method = RequestMethod.GET)
+    public ResponseEntity<List<category>> listAllCategories() {
+        List<category> categoryList = cserv.listAllCategories();
+        if (categoryList.isEmpty()) {
+            return new ResponseEntity<List<category>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<category>>(categoryList, HttpStatus.OK);
     }
 
     /**

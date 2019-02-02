@@ -43,4 +43,9 @@ public class productServiceImpl implements productService {
         return product.listAllProducts();
     }
 
+    @Override
+    public product findByProductName(String productName) {
+        return product.findByProductName(productName); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

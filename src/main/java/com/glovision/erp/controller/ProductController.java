@@ -16,6 +16,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,10 +37,9 @@ public class ProductController {
     @Autowired
     productService pserv;
 
-    
     /*
     List all the products on load
-    */
+     */
     @RequestMapping(value = "/product", method = RequestMethod.GET)
     public String product(ModelMap model) {
         log.info("Loading Products...");
@@ -46,6 +47,16 @@ public class ProductController {
         model.addAttribute("productList", productList);
         return "product";
 
+    }
+
+    /* Use this to retrieve the data in json format */
+    @RequestMapping(value = "/listproducts/", method = RequestMethod.GET)
+    public ResponseEntity<List<product>> listAllProducts() {
+        List<product> productlist = pserv.listAllProducts();
+        if (productlist.isEmpty()) {
+            return new ResponseEntity<List<product>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<product>>(productlist, HttpStatus.OK);
     }
 
     /**
@@ -59,9 +70,13 @@ public class ProductController {
     @RequestMapping(value = "/createProduct", method = RequestMethod.POST)
     public @ResponseBody
     message createProduct(@RequestBody product pt, ModelMap model, HttpSession session) {
+
         log.info("Creating new Product ....");
+
+        log.info("Product_CategoryId=" + pt.getProduct_CategoryID() + "ProdName=" + pt.getProduct_Name() + "ProductDescription=" + pt.getProduct_Description() + "ProductVersion=" + pt.getProduct_Version());
+
         message msg = new message();
-        if (pserv.findByProductID(pt.getProduct_Name()) != null) {
+        if (pserv.findByProductName(pt.getProduct_Name()) != null) {
             log.warn("Product " + pt.getProduct_Name() + " already exists.. returning error...");
             msg.setMessage("Product " + pt.getProduct_Name() + " already exists..");
             msg.setStatus(false);
@@ -78,14 +93,19 @@ public class ProductController {
         while (pserv.findByProductID(ID + "") != null) {
             ID = util.generateRandomNumber();
         }
-        pt.setProduct_CategoryID(ID + "");
+
+        // Set the products
+        pt.setProduct_CategoryID(pt.getProduct_CategoryID());
+        pt.setProduct_ID(ID + "");
         pt.setProduct_Name(pt.getProduct_Name());
         pt.setProduct_Description(pt.getProduct_Description());
         pt.setProduct_Version(pt.getProduct_Description());
         pt.setProduct_CreatedBy(user);
         pt.setProduct_UpdationTime(DateUtil.getEpoch());
         pt.setProduct_CreationTime(DateUtil.getEpoch());
+
         pserv.createProduct(pt);
+
         msg.setStatus(true);
         msg.setMessage("Product " + pt.getProduct_Name() + " Successfully Created...");
         log.info("New Product " + pt.getProduct_Name() + " Successfully Created...");

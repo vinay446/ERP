@@ -5,10 +5,13 @@
  */
 package com.glovision.erp.dao;
 
+import com.glovision.erp.model.category;
 import com.glovision.erp.model.product;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -44,6 +47,13 @@ public class productDAOImpl implements productDAO {
     @Override
     public List<product> listAllProducts() {
         return (List<product>) getSession().createCriteria(product.class).list();
+    }
+
+    @Override
+    public product findByProductName(String productName) {
+        Criteria cr = getSession().createCriteria(product.class);
+        cr.add(Restrictions.eq("product_Name", productName));
+        return (product) cr.uniqueResult();
     }
 
 }
