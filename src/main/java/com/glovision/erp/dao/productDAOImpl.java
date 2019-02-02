@@ -65,7 +65,7 @@ public class productDAOImpl implements productDAO {
         for (product p : products) {
             deleteProduct(p.getProduct_ID());
         }
-
+    
     }
 
 }
