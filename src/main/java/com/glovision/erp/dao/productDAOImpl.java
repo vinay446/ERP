@@ -50,7 +50,6 @@ public class productDAOImpl implements productDAO {
     }
 
     @Override
-
     public product findByProductName(String productName) {
         Criteria cr = getSession().createCriteria(product.class);
         cr.add(Restrictions.eq("product_Name", productName));
@@ -66,6 +65,6 @@ public class productDAOImpl implements productDAO {
             deleteProduct(p.getProduct_ID());
         }
     
-    }
+        }
 
 }
