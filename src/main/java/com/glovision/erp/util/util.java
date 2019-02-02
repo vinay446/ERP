@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
@@ -118,13 +119,26 @@ public class util {
 
     /**
      * Generates a random number
-     * @return 
+     *
+     * @return
      */
-    public static int generateRandomNumber(){
+    public static int generateRandomNumber() {
         return (int) (Math.random() * 50000) + 1;
     }
+
+    /**
+     * Checks if session is available or not
+     *
+     * @param session
+     * @return Returns true if session is active
+     */
+    public static boolean SessionCheck(HttpSession session) {
+        String emailID = (String) session.getAttribute("emailID");
+        return emailID != null;
+    }
+
     public static void main(String... args) {
         System.out.println("starting..");
-        
+
     }
 }

@@ -43,9 +43,17 @@ public interface productDAO {
      */
     List<product> listAllProducts();
 
+
     /*
     ProductName
     */
     product findByProductName(String productName);
 
+
+    
+    /**
+     * Delete all products from given category
+     * @param categoryID 
+     */
+    void deleteProducts(String categoryID);
 }

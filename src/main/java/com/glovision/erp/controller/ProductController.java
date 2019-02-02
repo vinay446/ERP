@@ -6,8 +6,6 @@
 package com.glovision.erp.controller;
 
 import com.glovision.erp.model.product;
-import com.glovision.erp.model.product;
-import com.glovision.erp.service.productService;
 import com.glovision.erp.service.productService;
 import com.glovision.erp.util.DateUtil;
 import com.glovision.erp.util.message;

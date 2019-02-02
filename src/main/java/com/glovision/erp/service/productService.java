@@ -44,4 +44,11 @@ public interface productService {
     List<product> listAllProducts();
 
     product findByProductName(String productName);
+
+    /**
+     * Delete all products from given category
+     *
+     * @param categoryID
+     */
+    void deleteProducts(String categoryID);
 }

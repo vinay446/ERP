@@ -13,7 +13,7 @@
     if (emailID == null) {
         response.sendRedirect(request.getContextPath() + "/logout?msg=Session Time out Please login again&req=dashboard");
     }
-    pageContext.setAttribute("emailID", emailID);   
+    pageContext.setAttribute("emailID", emailID);
 %>
 <aside id="left-sidebar-nav" class="nav-expanded nav-lock nav-collapsible">
     <div class="brand-sidebar">
@@ -77,16 +77,16 @@
                                    <i class="material-icons">keyboard_arrow_right</i>
                                     <span>Category</span>
                                 </a>
-                                
+
                             </li>
-                               <li>
+                            <li>
                                 <a href="<c:url value='/product'/>">
-                                   <i class="material-icons">keyboard_arrow_right</i>
+                                    <i class="material-icons">keyboard_arrow_right</i>
                                     <span>Product</span>
                                 </a>
                             </li>
-                            
-                            
+
+
                             <!--                            <li>
                                                             <a href="form-validation.html">
                                                                 <i class="material-icons">keyboard_arrow_right</i>

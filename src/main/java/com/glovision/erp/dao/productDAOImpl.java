@@ -50,10 +50,22 @@ public class productDAOImpl implements productDAO {
     }
 
     @Override
+
     public product findByProductName(String productName) {
         Criteria cr = getSession().createCriteria(product.class);
         cr.add(Restrictions.eq("product_Name", productName));
         return (product) cr.uniqueResult();
+    }
+
+    @Override
+    public void deleteProducts(String categoryID) {
+        Criteria cr = getSession().createCriteria(product.class);
+        cr.add(Restrictions.eq("product_CategoryID", categoryID));
+        List<product> products = cr.list();
+        for (product p : products) {
+            deleteProduct(p.getProduct_ID());
+        }
+
     }
 
 }
