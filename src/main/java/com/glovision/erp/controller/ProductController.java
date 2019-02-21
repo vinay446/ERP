@@ -71,7 +71,7 @@ public class ProductController {
 
         log.info("Creating new Product ....");
 
-        log.info("Product_CategoryId=" + pt.getProduct_CategoryID() + "ProdName=" + pt.getProduct_Name() + "ProductDescription=" + pt.getProduct_Description() + "ProductVersion=" + pt.getProduct_Version());
+        log.info("Product_CategoryId=" + pt.getCategory_ID() + "ProdName=" + pt.getProduct_Name() + "ProductDescription=" + pt.getProduct_Description() /*+ "ProductVersion=" + pt.getProduct_Version()*/);
 
         message msg = new message();
         if (pserv.findByProductName(pt.getProduct_Name()) != null) {
@@ -88,19 +88,19 @@ public class ProductController {
             return msg;
         }
         int ID = util.generateRandomNumber();
-        while (pserv.findByProductID(ID + "") != null) {
+        while (pserv.findByProductID(ID) != null) {
             ID = util.generateRandomNumber();
         }
 
         // Set the products
-        pt.setProduct_CategoryID(pt.getProduct_CategoryID());
-        pt.setProduct_ID(ID + "");
+        pt.setCategory_ID(pt.getCategory_ID());
+        pt.setProduct_ID(ID);
         pt.setProduct_Name(pt.getProduct_Name());
         pt.setProduct_Description(pt.getProduct_Description());
-        pt.setProduct_Version(pt.getProduct_Description());
-        pt.setProduct_CreatedBy(user);
-        pt.setProduct_UpdationTime(DateUtil.getEpoch());
-        pt.setProduct_CreationTime(DateUtil.getEpoch());
+//        pt.setProduct_Version(pt.getProduct_Description());
+//        pt.setCreatedBy(user);
+//        pt.setUpdation_Time(DateUtil.getEpoch());
+//        pt.setCreation_Time(DateUtil.getEpoch());
 
         pserv.createProduct(pt);
 

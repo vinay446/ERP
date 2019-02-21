@@ -64,7 +64,7 @@ public class LoginController {
         }
 
         //Check with the encryption password
-        if (util.encryptString(lgn.getPassword()).equals(u.getUser_password())) {
+        if (util.encryptString(lgn.getPassword()).equals(u.getUser_Password())) {
 
             log.info("Success");
             ms.setStatus(true);

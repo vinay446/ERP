@@ -20,7 +20,7 @@ public interface productDAO {
      * @param productID
      * @return product obj
      */
-    product findByProductID(String productID);
+    product findByProductID(int productID);
 
     /**
      * Creates a new product in database
@@ -34,7 +34,7 @@ public interface productDAO {
      *
      * @param productID
      */
-    void deleteProduct(String productID);
+    void deleteProduct(int productID);
 
     /**
      * Lists all products from database

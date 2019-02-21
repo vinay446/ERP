@@ -56,15 +56,15 @@ public class UserController {
             while (service.getUserByID(userID) != null) {
                 userID = util.generateRandomNumber();
             }
-            u.setUser_Id(userID);
-            u.setUser_Role("user");
+            u.setUser_ID(userID);
+            u.setUser_Role(1);
             u.setUser_LastLogin(0);
-            u.setUser_creationTime(DateUtil.getEpoch());
+            u.setUser_CreationTime(DateUtil.getEpoch());
             u.setUser_isActive("false");
-            u.setUser_password(util.encryptString(u.getUser_password()));
+            u.setUser_Password(util.encryptString(u.getUser_Password()));
             service.SaveUser(u);
             String verifycode = util.encryptString(u.getUser_Email().trim());
-            String link = "localhost:8084/erp/activateaccount?ID=" + u.getUser_Id() + "&code=" + URLEncoder.encode(verifycode);
+            String link = "localhost:8084/erp/activateaccount?ID=" + u.getUser_ID() + "&code=" + URLEncoder.encode(verifycode);
             SendMail se = new SendMail(u.getUser_Email(), "welocme@glovision.co", "WELCOME", u.getUser_Name(), link);
             se.start();
             Thread.sleep(3000);

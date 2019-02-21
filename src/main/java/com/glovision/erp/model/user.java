@@ -8,6 +8,8 @@ package com.glovision.erp.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,47 +18,57 @@ import javax.persistence.Table;
  * @author glodeveloper
  */
 @Entity
-@Table(name = "user")
+@Table(name="user")
 public class user implements Serializable {
-
-    @Column(name = "user_Id")
-    int user_Id;
-
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_ID")
+    int user_ID;
+    
     @Column(name = "user_Role")
-    String user_Role;
-
+    int user_Role;
+    
     @Column(name = "user_Name")
     String user_Name;
     
-    @Id
     @Column(name = "user_Email")
     String user_Email;
-
-    @Column(name = "user_password")
-    String user_password;
-
-    @Column(name = "user_creationTime")
-    long user_creationTime;
-
+    
+    @Column(name = "user_Password")
+    String user_Password;
+    
+    @Column(name = "user_CreationTime")
+    long user_CreationTime;
+    
     @Column(name = "user_LastLogin")
     long user_LastLogin;
-
+    
     @Column(name = "user_isActive")
     String user_isActive;
+    
+    @Column(name = "user_accountID")
+    String user_accountID;
+    
+    @Column(name = "preferredLang")
+    String preferredLang;
+    
+    @Column(name = "reportsTo")
+    int reportsTo;
 
-    public int getUser_Id() {
-        return user_Id;
+    public int getUser_ID() {
+        return user_ID;
     }
 
-    public void setUser_Id(int user_Id) {
-        this.user_Id = user_Id;
+    public void setUser_ID(int user_ID) {
+        this.user_ID = user_ID;
     }
 
-    public String getUser_Role() {
+    public int getUser_Role() {
         return user_Role;
     }
 
-    public void setUser_Role(String user_Role) {
+    public void setUser_Role(int user_Role) {
         this.user_Role = user_Role;
     }
 
@@ -76,20 +88,20 @@ public class user implements Serializable {
         this.user_Email = user_Email;
     }
 
-    public String getUser_password() {
-        return user_password;
+    public String getUser_Password() {
+        return user_Password;
     }
 
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setUser_Password(String user_Password) {
+        this.user_Password = user_Password;
     }
 
-    public long getUser_creationTime() {
-        return user_creationTime;
+    public long getUser_CreationTime() {
+        return user_CreationTime;
     }
 
-    public void setUser_creationTime(long user_creationTime) {
-        this.user_creationTime = user_creationTime;
+    public void setUser_CreationTime(long user_CreationTime) {
+        this.user_CreationTime = user_CreationTime;
     }
 
     public long getUser_LastLogin() {
@@ -107,6 +119,29 @@ public class user implements Serializable {
     public void setUser_isActive(String user_isActive) {
         this.user_isActive = user_isActive;
     }
-    
+
+    public String getUser_accountID() {
+        return user_accountID;
+    }
+
+    public void setUser_accountID(String user_accountID) {
+        this.user_accountID = user_accountID;
+    }
+
+    public String getPreferredLang() {
+        return preferredLang;
+    }
+
+    public void setPreferredLang(String preferredLang) {
+        this.preferredLang = preferredLang;
+    }
+
+    public int getReportsTo() {
+        return reportsTo;
+    }
+
+    public void setReportsTo(int reportsTo) {
+        this.reportsTo = reportsTo;
+    }
     
 }

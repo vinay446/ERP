@@ -30,7 +30,7 @@ public class productDAOImpl implements productDAO {
     }
 
     @Override
-    public product findByProductID(String productID) {
+    public product findByProductID(int productID) {
         return (product) getSession().get(product.class, productID);
     }
 
@@ -40,7 +40,7 @@ public class productDAOImpl implements productDAO {
     }
 
     @Override
-    public void deleteProduct(String productID) {
+    public void deleteProduct(int productID) {
         getSession().delete(findByProductID(productID));
     }
 

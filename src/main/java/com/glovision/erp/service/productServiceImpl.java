@@ -24,7 +24,7 @@ public class productServiceImpl implements productService {
     productDAO product;
     
     @Override
-    public product findByProductID(String productID) {
+    public product findByProductID(int productID) {
         return product.findByProductID(productID);
     }
     
@@ -34,7 +34,7 @@ public class productServiceImpl implements productService {
     }
     
     @Override
-    public void deleteProduct(String productID) {
+    public void deleteProduct(int productID) {
         product.deleteProduct(productID);
     }
     
